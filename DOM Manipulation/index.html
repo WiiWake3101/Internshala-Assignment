@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="./output.css" rel="stylesheet">
+    <title>Student Registration System</title>
+</head>
+<body class="bg-gray-100">
+
+    <!-- Task 2: Header -->
+    <header class="bg-blue-500 text-white p-4 text-center">
+        <h1 class="text-3xl font-bold">Student Registration System</h1>
+        <p class="mt-2">Register, edit, and manage student details easily.</p>
+    </header>
+
+    <!-- Task 3: Form and Input Fields -->
+    <div class="container mx-auto p-4">
+        <form id="studentForm" class="bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4">
+            <div class="mb-4">
+                <label class="block text-gray-700 text-sm font-bold mb-2" for="studentName">Student Name</label>
+                <input id="studentName" type="text" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline">
+            </div>
+            <div class="mb-4">
+                <label class="block text-gray-700 text-sm font-bold mb-2" for="studentId">Student ID</label>
+                <input id="studentId" type="text" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline">
+            </div>
+            <div class="mb-4">
+                <label class="block text-gray-700 text-sm font-bold mb-2" for="email">Email ID</label>
+                <input id="email" type="email" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline">
+            </div>
+            <div class="mb-4">
+                <label class="block text-gray-700 text-sm font-bold mb-2" for="contact">Contact No</label>
+                <input id="contact" type="text" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline">
+            </div>
+            <button type="button" onclick="addStudent()" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline">Register</button>
+        </form>
+
+        <!-- Task 4: Display Section -->
+        <h2 class="text-xl font-bold mb-2">Registered Students</h2>
+        <div class="overflow-x-auto">
+            <table class="table-auto w-full bg-white shadow-md rounded">
+                <thead>
+                    <tr>
+                        <th class="px-4 py-2">Student Name</th>
+                        <th class="px-4 py-2">Student ID</th>
+                        <th class="px-4 py-2">Email ID</th>
+                        <th class="px-4 py-2">Contact No</th>
+                        <th class="px-4 py-2">Actions</th>
+                    </tr>
+                </thead>
+                <tbody id="studentTableBody">
+                    <!-- Student records will be injected here -->
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    <script>
+        // Task 6: JavaScript Functionality
+        let students = JSON.parse(localStorage.getItem('students')) || [];
+        let editIndex = -1;
+
+        function addStudent() {
+            const name = document.getElementById('studentName').value;
+            const studentId = document.getElementById('studentId').value;
+            const email = document.getElementById('email').value;
+            const contact = document.getElementById('contact').value;
+
+            if (!name || !studentId || !email || !contact) {
+                alert('Please fill all fields');
+                return;
+            }
+
+            if (!/^[a-zA-Z ]+$/.test(name)) {
+                alert('Name should only contain characters');
+                return;
+            }
+
+            if (!/^\d+$/.test(studentId)) {
+                alert('Student ID should only contain numbers');
+                return;
+            }
+
+            if (!/^\d+$/.test(contact)) {
+                alert('Contact number should only contain numbers');
+                return;
+            }
+
+            if (editIndex === -1) {
+                students.push({ name, studentId, email, contact });
+            } else {
+                students[editIndex] = { name, studentId, email, contact };
+                editIndex = -1;
+            }
+
+            localStorage.setItem('students', JSON.stringify(students));
+            document.getElementById('studentForm').reset();
+            renderTable();
+        }
+
+        function renderTable() {
+            const tableBody = document.getElementById('studentTableBody');
+            tableBody.innerHTML = '';
+
+            students.forEach((student, index) => {
+                const row = document.createElement('tr');
+
+                row.innerHTML = `
+                    <td class="border px-4 py-2">${student.name}</td>
+                    <td class="border px-4 py-2">${student.studentId}</td>
+                    <td class="border px-4 py-2">${student.email}</td>
+                    <td class="border px-4 py-2">${student.contact}</td>
+                    <td class="border px-4 py-2">
+                        <button onclick="editStudent(${index})" class="bg-yellow-500 hover:bg-yellow-700 text-white font-bold py-1 px-2 rounded">Edit</button>
+                        <button onclick="deleteStudent(${index})" class="bg-red-500 hover:bg-red-700 text-white font-bold py-1 px-2 rounded">Delete</button>
+                    </td>
+                `;
+
+                tableBody.appendChild(row);
+            });
+        }
+
+        function editStudent(index) {
+            const student = students[index];
+
+            document.getElementById('studentName').value = student.name;
+            document.getElementById('studentId').value = student.studentId;
+            document.getElementById('email').value = student.email;
+            document.getElementById('contact').value = student.contact;
+
+            editIndex = index;
+        }
+
+        function deleteStudent(index) {
+            students.splice(index, 1);
+            localStorage.setItem('students', JSON.stringify(students));
+            renderTable();
+        }
+
+        window.onload = renderTable;
+    </script>
+</body>
+</html>
