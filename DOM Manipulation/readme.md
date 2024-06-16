@@ -61,13 +61,13 @@ This project implements a Student Registration System. Below are the assignment 
 
 1. Clone the repository:
    ```sh
-   git clone https://github.com/your-username/student-registration-system.git
+   git clone https://github.com/your-username/student-registration-system.git```
 
 2. Navigate to the project directory:
-    ```sh cd student-registration-system
+    ```cd student-registration-system```
 
 3. Open the index.html file in a web browser.
 
 4. Run tailwind css in terminal:
-    ```sh npx tailwindcss -i ./input.css -o ./output.css --watch
+    ```npx tailwindcss -i ./input.css -o ./output.css --watch```
    

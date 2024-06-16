@@ -1,0 +1,293 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'poppins', sans-serif;
+    scroll-behavior: smooth;
+}
+
+body {
+    color: white;
+    background-color: black;
+}
+
+/*navbar*/
+.header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    padding: 20px 10%;
+    background: #252525;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    z-index: 100;
+    overflow: hidden;
+}
+
+.navbar a {
+    display: inline-block;
+    font-size: 25px;
+    color: #fff;
+    text-decoration: none;
+    font-weight: 500;
+    margin-left: 25px;
+    transition: .3s;
+    opacity: 0;
+    animation: slideUP .5s ease forwards;
+    animation-delay: calc(.2s * var(--i));
+}
+
+.navbar a:hover {
+    color: #0ef;
+    text-decoration: underline;
+}
+
+.logo {
+    font-size: 1.5rem;
+}
+
+.about h1 {
+    margin-bottom: 20px;
+}
+
+.about {
+    padding: 60px;
+    margin-top: 30px;
+    margin-bottom: -75px;
+}
+
+.about span {
+    font-size: large;
+    font-weight: 700;
+    line-height: 1.8;
+}
+
+.aboutme h2 {
+    margin-bottom: 20px;
+}
+
+.aboutme {
+    padding: 50px;
+    margin-top: 50px;
+    margin-bottom: -45px;
+}
+
+.aboutme span {
+    line-height: 1.8;
+}
+
+.india {
+    padding: 50px;
+    margin-top: -40px;
+    margin-bottom: -75px;
+}
+
+.india ul {
+    padding: 90px;
+
+}
+
+.india ul li {
+    line-height: 50px;
+}
+
+.japan {
+    padding: 50px;
+    margin-top: -40px;
+    margin-bottom: -75px;
+}
+
+.japan ul {
+    padding: 90px;
+
+}
+
+.japan ul li {
+    line-height: 50px;
+}
+
+.singapore {
+    padding: 50px;
+    margin-top: -40px;
+    margin-bottom: -75px;
+}
+
+.singapore ul {
+    padding: 90px;
+
+}
+
+.singapore ul li {
+    line-height: 50px;
+}
+
+.center {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    width: 50%;
+}
+
+img {
+    width: 50%;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    padding: 5px;
+    width: 150px;
+}
+
+hr {
+    margin-top: 35px;
+}
+
+.heading {
+    font-size: 5vw;
+    margin-top: 10px;
+}
+
+.contacts {
+    display: grid;
+    align-items: center;
+    gap: 3rem;
+    padding: 40px;
+    padding-top: 70px;
+    justify-content: center;
+    background-color: #000;
+}
+
+.contact-text {
+    align-content: center;
+}
+
+.contact-text h2 {
+    font-size: 60px;
+    line-height: normal;
+    text-align: center;
+
+}
+
+.contact-text h2 span {
+    color: #0ef;
+}
+
+.contact-text h4 {
+    margin: 15px 0;
+    color: rgb(228, 228, 228);
+    font-size: 20px;
+    font-weight: 600;
+}
+
+.contact-list {
+    margin-bottom: 3rem;
+}
+
+.contact-list li {
+    margin-bottom: 10px;
+    display: block;
+    margin-bottom: 10px;
+    letter-spacing: 2px;
+}
+
+.contact-list i {
+    display: inline-block;
+    color: #0ef;
+    font-size: 20px;
+    font-weight: 600;
+    transition: all .40s ease;
+    padding: 10px;
+}
+
+
+.contact-icons i {
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    width: 40px;
+    height: 40px;
+    background: transparent;
+    border: 2px solid #0ef;
+    border-radius: 50%;
+    font-size: 20px;
+    color: #0ef;
+    text-decoration: none;
+    margin: 0px 15px 0px 0;
+    opacity: 1;
+}
+
+.contact-icons i:hover {
+    background: #0ef;
+    color: #000;
+    box-shadow: 0 0 20px #0ef;
+}
+
+.last-text p {
+    width: 100%;
+    text-align: center;
+    padding: 25px;
+    background: black;
+    font-weight: 300;
+    margin-top: 0px;
+}
+
+.top {
+    position: fixed;
+    bottom: 2.1rem;
+    left: 1rem;
+    display: flex;
+    opacity: 0;
+    transition: all .4s;
+}
+
+.top.active {
+    bottom: 32px;
+    pointer-events: auto;
+    opacity: 1;
+}
+
+.top i {
+    color: black;
+    background: #0ef;
+    font-size: 20px;
+    padding: 10px;
+    border-radius: 0.5rem;
+}
+
+.top i:hover {
+    box-shadow: 0 0 5px cyan,
+        0 0 25px cyan, 0 0 50px cyan, 0 0 200px cyan;
+}
+
+.fade-in {
+    opacity: 0;
+    /* Initially set opacity to 0 */
+    transition: opacity 0.5s ease;
+    /* Smooth transition for opacity */
+}
+
+.fade-in.active {
+    opacity: 1;
+    /* Set opacity to 1 when the class is active */
+}
+
+
+@media only screen and (max-width: 600px) {
+    .about {
+        padding-top: 10px;
+        margin-top: 150px;
+    }
+
+    .navbar a {
+        display: none;
+    }
+
+    .logo {
+        margin-left: auto;
+        margin-right: auto;
+    }
+
+    footer {
+        text-align: center;
+    }
+}
